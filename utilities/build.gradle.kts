@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
 //  implementation(kotlin("reflect"))
-  implementation("io.vertx:vertx-web:4.3.3")
+  implementation("io.vertx:vertx-web")
 }
