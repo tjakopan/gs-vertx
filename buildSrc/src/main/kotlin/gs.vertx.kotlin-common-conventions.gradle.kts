@@ -11,7 +11,8 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.7.10"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+  implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4"))
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
   implementation(platform("io.vertx:vertx-stack-depchain:4.3.3"))
   implementation("io.vertx:vertx-core")
@@ -22,7 +23,7 @@ dependencies {
   implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("io.kotest:kotest-assertions-core:5.4.1")
 }

@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  redis:
+    image: "redis:7.0.4-alpine"
+    container_name: "gs-messaging-redis"
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - gs-messaging-redis-network
+
+networks:
+  gs-messaging-redis-network:
+    name: "gs-messaging-redis-network"
