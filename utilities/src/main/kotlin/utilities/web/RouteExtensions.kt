@@ -7,7 +7,10 @@ import io.vertx.kotlin.coroutines.dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-fun Route.coroutineHandler(coroutineScope: CoroutineScope, requestHandler: suspend (RoutingContext) -> Unit): Route {
+fun Route.coroutineHandler(
+  coroutineScope: CoroutineScope,
+  requestHandler: suspend CoroutineScope.(RoutingContext) -> Unit
+): Route {
   return handler { ctx ->
     coroutineScope.launch(ctx.vertx().dispatcher()) {
       try {
@@ -19,7 +22,10 @@ fun Route.coroutineHandler(coroutineScope: CoroutineScope, requestHandler: suspe
   }
 }
 
-fun <T> Route.coroutineRespond(coroutineScope: CoroutineScope, function: suspend (RoutingContext) -> T?): Route {
+fun <T> Route.coroutineRespond(
+  coroutineScope: CoroutineScope,
+  function: suspend CoroutineScope.(RoutingContext) -> T?
+): Route {
   return respond { ctx ->
     val promise = Promise.promise<T?>()
     coroutineScope.launch(ctx.vertx().dispatcher()) {
