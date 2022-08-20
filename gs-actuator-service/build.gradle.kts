@@ -10,6 +10,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
 
   testImplementation("io.vertx:vertx-web-client")
+  testImplementation("uk.org.webcompere:system-stubs-jupiter:2.0.1")
 }
 
 vertx {
