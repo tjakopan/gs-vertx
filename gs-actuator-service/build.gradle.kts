@@ -7,7 +7,7 @@ dependencies {
   implementation("io.vertx:vertx-web")
   implementation("io.vertx:vertx-health-check")
   implementation("io.vertx:vertx-dropwizard-metrics")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
 
   testImplementation("io.vertx:vertx-web-client")
   testImplementation("uk.org.webcompere:system-stubs-jupiter:2.0.1")

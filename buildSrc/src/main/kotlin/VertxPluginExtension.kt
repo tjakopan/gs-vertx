@@ -1,7 +1,7 @@
 import org.gradle.api.Project
 
 open class VertxPluginExtension(private val project: Project) {
-  var version = "4.3.3"
+  var version = "4.3.7"
   var launcherClass = "io.vertx.core.Launcher"
   var mainVerticleClass: String? = null
   var args = listOf<String>()

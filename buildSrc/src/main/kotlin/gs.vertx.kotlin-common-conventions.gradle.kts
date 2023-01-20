@@ -9,31 +9,31 @@ repositories {
 }
 
 dependencies {
-  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.7.10"))
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.7.21"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4"))
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
-  implementation(platform("io.vertx:vertx-stack-depchain:4.3.3"))
+  implementation(platform("io.vertx:vertx-stack-depchain:4.3.7"))
   implementation("io.vertx:vertx-core")
   implementation("io.vertx:vertx-lang-kotlin-coroutines")
   implementation("io.vertx:vertx-lang-kotlin")
 
-  implementation("ch.qos.logback:logback-classic:1.2.11")
-  implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
+  implementation("ch.qos.logback:logback-classic:1.4.5")
+  implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("io.vertx:vertx-junit5")
-  testImplementation("io.kotest:kotest-assertions-core:5.4.1")
+  testImplementation("io.kotest:kotest-assertions-core:5.5.4")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_18
 
 tasks.withType<KotlinCompile>() {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict")
-    jvmTarget = JavaVersion.VERSION_17.toString()
+    jvmTarget = JavaVersion.VERSION_18.toString()
   }
 }
 

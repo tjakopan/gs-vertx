@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
   implementation(project(":utilities"))
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4")
-  implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")
+  implementation("io.lettuce:lettuce-core:6.2.2.RELEASE")
   implementation("io.vertx:vertx-service-proxy")
 
   compileOnly("io.vertx:vertx-codegen")
