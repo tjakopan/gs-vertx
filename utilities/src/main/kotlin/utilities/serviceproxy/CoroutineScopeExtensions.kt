@@ -22,7 +22,7 @@ inline fun CoroutineScope.runService(
   return promise.future()
 }
 
-inline fun <T> CoroutineScope.runServiceWithResult(
+inline fun <T> CoroutineScope.callService(
   dispatcher: CoroutineDispatcher,
   crossinline function: suspend CoroutineScope.() -> T
 ): Future<T> {

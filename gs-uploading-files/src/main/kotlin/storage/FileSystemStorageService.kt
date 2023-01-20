@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.dispatcher
 import io.vertx.serviceproxy.ServiceException
 import kotlinx.coroutines.CoroutineScope
 import utilities.serviceproxy.runService
-import utilities.serviceproxy.runServiceWithResult
+import utilities.serviceproxy.callService
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
@@ -36,9 +36,9 @@ class FileSystemStorageService(private val scope: CoroutineScope, private val ve
   }
 
   override fun loadAll(): Future<List<String>> =
-    scope.runServiceWithResult(vertx.dispatcher()) { fileSystem.readDir(rootPath.absolutePathString()).await() }
+    scope.callService(vertx.dispatcher()) { fileSystem.readDir(rootPath.absolutePathString()).await() }
 
-  override fun load(filename: String): Future<String> = scope.runServiceWithResult(vertx.dispatcher()) {
+  override fun load(filename: String): Future<String> = scope.callService(vertx.dispatcher()) {
     val path = rootPath.resolve(filename).absolutePathString()
     val exists = fileSystem.exists(path).await()
     if (exists) path

@@ -8,14 +8,14 @@ import io.vertx.kotlin.coroutines.await
 import io.vertx.kotlin.coroutines.dispatcher
 import kotlinx.coroutines.CoroutineScope
 import mu.KotlinLogging
-import utilities.serviceproxy.runServiceWithResult
+import utilities.serviceproxy.callService
 
 class Receiver private constructor(private val scope: CoroutineScope, private val vertx: Vertx) :
   RedisPubSubAdapter<String, String>(), IReceiver {
   private val logger = KotlinLogging.logger { }
   private lateinit var counter: Counter
   override val count: Future<Long>
-    get() = scope.runServiceWithResult(vertx.dispatcher()) { counter.get().await() }
+    get() = scope.callService(vertx.dispatcher()) { counter.get().await() }
 
   private suspend fun init() {
     val sharedData = vertx.sharedData()
