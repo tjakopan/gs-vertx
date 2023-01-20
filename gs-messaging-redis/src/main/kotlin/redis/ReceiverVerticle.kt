@@ -21,7 +21,7 @@ class ReceiverVerticle : CoroutineVerticle() {
     val redisUri = RedisURI.create(redisConfig.uri)
     val redisClient = RedisClient.create()
     val connection = redisClient.connectPubSubAsync(StringCodec.UTF8, redisUri).await()
-    val receiver = Receiver.create(this, vertx)
+    val receiver = Receiver.createReceiver(vertx)
     connection.addListener(receiver as Receiver)
     connection.async().subscribe("chat").await()
     val serviceBinder = ServiceBinder(vertx)

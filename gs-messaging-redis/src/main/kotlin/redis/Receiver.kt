@@ -5,17 +5,15 @@ import io.vertx.core.Future
 import io.vertx.core.Vertx
 import io.vertx.core.shareddata.Counter
 import io.vertx.kotlin.coroutines.await
-import io.vertx.kotlin.coroutines.dispatcher
-import kotlinx.coroutines.CoroutineScope
 import mu.KotlinLogging
-import utilities.serviceproxy.callService
 
-class Receiver private constructor(private val scope: CoroutineScope, private val vertx: Vertx) :
+private val logger = KotlinLogging.logger { }
+
+class Receiver private constructor(private val vertx: Vertx) :
   RedisPubSubAdapter<String, String>(), IReceiver {
-  private val logger = KotlinLogging.logger { }
   private lateinit var counter: Counter
   override val count: Future<Long>
-    get() = scope.callService(vertx.dispatcher()) { counter.get().await() }
+    get() = counter.get()
 
   private suspend fun init() {
     val sharedData = vertx.sharedData()
@@ -28,8 +26,8 @@ class Receiver private constructor(private val scope: CoroutineScope, private va
   }
 
   companion object {
-    suspend fun create(scope: CoroutineScope, vertx: Vertx): IReceiver {
-      val receiver = Receiver(scope, vertx)
+    suspend fun createReceiver(vertx: Vertx): IReceiver {
+      val receiver = Receiver(vertx)
       receiver.init()
       return receiver
     }
