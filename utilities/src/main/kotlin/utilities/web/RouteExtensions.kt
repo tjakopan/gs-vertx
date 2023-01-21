@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 fun Route.coroutineHandler(
   coroutineScope: CoroutineScope,
-  requestHandler: suspend CoroutineScope.(RoutingContext) -> Unit
+  requestHandler: suspend (RoutingContext) -> Unit
 ): Route {
   return handler { ctx ->
     coroutineScope.launch(ctx.vertx().dispatcher()) {
@@ -24,7 +24,7 @@ fun Route.coroutineHandler(
 
 fun <T> Route.coroutineRespond(
   coroutineScope: CoroutineScope,
-  function: suspend CoroutineScope.(RoutingContext) -> T?
+  function: suspend (RoutingContext) -> T?
 ): Route {
   return respond { ctx ->
     val promise = Promise.promise<T?>()

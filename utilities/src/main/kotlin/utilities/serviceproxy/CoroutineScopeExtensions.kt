@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 inline fun CoroutineScope.runService(
   dispatcher: CoroutineDispatcher,
-  crossinline function: suspend CoroutineScope.() -> Unit
+  crossinline function: suspend () -> Unit
 ): Future<Void> {
   val promise = Promise.promise<Void>()
   this.launch(dispatcher) {
@@ -24,7 +24,7 @@ inline fun CoroutineScope.runService(
 
 inline fun <T> CoroutineScope.callService(
   dispatcher: CoroutineDispatcher,
-  crossinline function: suspend CoroutineScope.() -> T
+  crossinline function: suspend () -> T
 ): Future<T> {
   val promise = Promise.promise<T>()
   this.launch(dispatcher) {
