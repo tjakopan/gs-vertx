@@ -15,7 +15,7 @@ class UploadingFilesVerticle : CoroutineVerticle() {
       deploymentOptionsOf(config = config.getJsonObject("storage"))
     ).await()
 
-    val storageService = createStorageServiceProxy(vertx, "storage-service")
+    val storageService = createStorageServiceProxy(vertx)
     storageService.deleteAll().await()
     storageService.init().await()
 

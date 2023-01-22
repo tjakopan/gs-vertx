@@ -13,7 +13,7 @@ class HttpServerVerticle : CoroutineVerticle() {
   override suspend fun start() {
     val server = vertx.createHttpServer()
 
-    val storageService = createStorageServiceProxy(vertx, "storage-service")
+    val storageService = createStorageServiceProxy(vertx)
 
     val templateEngine = ThymeleafTemplateEngine.create(vertx)
     val templateHandler = TemplateHandler.create(templateEngine)

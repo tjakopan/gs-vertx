@@ -14,8 +14,10 @@ interface IStorageService {
   fun deleteAll(): Future<Void>
 }
 
+const val STORAGE_SERVICE_ADDRESS = "storage-service"
+
 fun createStorageService(scope: CoroutineScope, vertx: Vertx, config: StorageConfig): IStorageService =
   FileSystemStorageService(scope, vertx, config)
 
-fun createStorageServiceProxy(vertx: Vertx, address: String): IStorageService =
-  IStorageServiceVertxEBProxy(vertx, address)
+fun createStorageServiceProxy(vertx: Vertx): IStorageService =
+  IStorageServiceVertxEBProxy(vertx, STORAGE_SERVICE_ADDRESS)

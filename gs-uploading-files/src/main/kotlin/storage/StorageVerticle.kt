@@ -12,9 +12,8 @@ class StorageVerticle : CoroutineVerticle() {
   override suspend fun start() {
     val storageConfig = StorageConfig(config)
     val storageService = createStorageService(this, vertx, storageConfig)
-    storageServiceBinder = ServiceBinder(vertx)
-    storageServiceConsumer = storageServiceBinder?.setAddress("storage-service")
-      ?.register(IStorageService::class.java, storageService)
+    storageServiceBinder = ServiceBinder(vertx).setAddress(STORAGE_SERVICE_ADDRESS)
+    storageServiceConsumer = storageServiceBinder?.register(IStorageService::class.java, storageService)
   }
 
   override suspend fun stop() {
