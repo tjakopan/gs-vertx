@@ -1,0 +1,14 @@
+{
+  "db": {
+    "connection": {
+      "port": 5432,
+      "host": "localhost",
+      "database": "gs-managing-transactions",
+      "user": "gs-managing-transactions",
+      "password": "gs-managing-transactions"
+    },
+    "pool": {
+      "max-size": 5
+    }
+  }
+}

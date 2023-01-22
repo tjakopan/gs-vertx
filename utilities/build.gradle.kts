@@ -4,5 +4,6 @@ plugins {
 
 dependencies {
 //  implementation(kotlin("reflect"))
-  implementation("io.vertx:vertx-web")
+  compileOnly("io.vertx:vertx-web")
+  compileOnly("io.vertx:vertx-sql-client")
 }
