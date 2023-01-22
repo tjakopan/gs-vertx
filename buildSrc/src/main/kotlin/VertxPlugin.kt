@@ -102,7 +102,7 @@ class VertxPlugin : Plugin<Project> {
       group = "Application"
       description = "Run this project as Vert.x application"
       workingDir = File(vertxPluginExtension.workDirectory)
-      jvmArgs = vertxPluginExtension.jvmArgs
+      jvmArgs(vertxPluginExtension.jvmArgs)
       classpath = mainSourceSet.runtimeClasspath
       mainClass.set(if (vertxPluginExtension.redeploy) "io.vertx.core.Launcher" else vertxPluginExtension.launcherClass)
 
@@ -147,8 +147,8 @@ class VertxPlugin : Plugin<Project> {
       group = "Application"
       description = "Debug this project as Vert.x application"
       workingDir = File(vertxPluginExtension.workDirectory)
-      jvmArgs = vertxPluginExtension.jvmArgs
-      jvmArgs = computeDebugOptions(project)
+      jvmArgs(vertxPluginExtension.jvmArgs)
+      jvmArgs(computeDebugOptions(project))
       classpath = mainSourceSet.runtimeClasspath
       mainClass.set(vertxPluginExtension.launcherClass)
 
