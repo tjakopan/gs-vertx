@@ -13,7 +13,7 @@ interface IQuoteService {
 
 const val QUOTE_SERVICE_ADDRESS = "quote-service"
 
-fun createQuoteService(coroutineScope: CoroutineScope, vertx: Vertx, client: WebClient): IQuoteService =
-  QuoteService(coroutineScope, vertx, client)
+fun createQuoteService(coroutineScope: CoroutineScope, client: WebClient): IQuoteService =
+  QuoteService(coroutineScope, client)
 
 fun createQuoteServiceProxy(vertx: Vertx): IQuoteService = IQuoteServiceVertxEBProxy(vertx, QUOTE_SERVICE_ADDRESS)

@@ -20,8 +20,8 @@ suspend fun IBookingService.findAllBookingsSuspending(): List<String> = findAllB
 
 const val BOOKING_SERVICE_ADDRESS = "booking-service"
 
-fun createBookingService(coroutineScope: CoroutineScope, vertx: Vertx, pool: Pool): IBookingService =
-  BookingService(coroutineScope, vertx, pool)
+fun createBookingService(coroutineScope: CoroutineScope, pool: Pool): IBookingService =
+  BookingService(coroutineScope, pool)
 
 fun createBookingServiceProxy(vertx: Vertx): IBookingService =
   IBookingServiceVertxEBProxy(vertx, BOOKING_SERVICE_ADDRESS)
