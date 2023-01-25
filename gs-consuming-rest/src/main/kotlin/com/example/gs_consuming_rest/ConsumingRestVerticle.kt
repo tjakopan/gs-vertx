@@ -17,7 +17,7 @@ class ConsumingRestVerticle : CoroutineVerticle() {
     DatabindCodec.mapper().registerModule(kotlinModule())
     DatabindCodec.prettyMapper().registerModule(kotlinModule())
     val client = WebClient.create(vertx)
-    val quoteService = createQuoteService(this, vertx, client)
+    val quoteService = createQuoteService(this, client)
     quoteServiceBinder = ServiceBinder(vertx).setAddress(QUOTE_SERVICE_ADDRESS)
     quoteServiceConsumer = quoteServiceBinder!!.register(IQuoteService::class.java, quoteService)
   }
