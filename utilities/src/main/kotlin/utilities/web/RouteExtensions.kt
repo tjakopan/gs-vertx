@@ -26,10 +26,10 @@ fun Route.coroutineHandler(
 
 fun <T> Route.coroutineRespond(
   coroutineScope: CoroutineScope,
-  function: suspend CoroutineScope.(RoutingContext) -> T?
+  function: suspend CoroutineScope.(RoutingContext) -> T
 ): Route {
   return respond { ctx ->
-    val promise = Promise.promise<T?>()
+    val promise = Promise.promise<T>()
     coroutineScope.launch {
       coroutineScope {
         try {

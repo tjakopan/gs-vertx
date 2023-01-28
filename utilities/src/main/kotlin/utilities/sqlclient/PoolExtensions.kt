@@ -10,14 +10,15 @@ import kotlinx.coroutines.launch
 
 suspend inline fun <T> Pool.withTransaction(
   coroutineScope: CoroutineScope,
-  crossinline function: suspend CoroutineScope.(SqlConnection) -> T?
-): T? {
+  crossinline function: suspend CoroutineScope.(SqlConnection) -> T
+): T {
   return withTransaction { conn ->
-    val promise = Promise.promise<T?>()
+    val promise = Promise.promise<T>()
     coroutineScope.launch {
       coroutineScope {
         try {
-          promise.complete(function(conn))
+          val result = function(conn)
+          promise.complete(result)
         } catch (e: Throwable) {
           promise.fail(e)
         }

@@ -25,11 +25,13 @@ inline fun CoroutineScope.runService(crossinline function: suspend CoroutineScop
 inline fun <T> CoroutineScope.callService(crossinline function: suspend CoroutineScope.() -> T): Future<T> {
   val promise = Promise.promise<T>()
   val job = launch {
-    try {
-      val result = function()
-      promise.complete(result)
-    } catch (e: Throwable) {
-      promise.fail(e)
+    coroutineScope {
+      try {
+        val result = function()
+        promise.complete(result)
+      } catch (e: Throwable) {
+        promise.fail(e)
+      }
     }
   }
   return promise.future()
