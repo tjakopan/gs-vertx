@@ -10,7 +10,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
 
   testImplementation("io.vertx:vertx-web-client")
-  testImplementation("uk.org.webcompere:system-stubs-jupiter:2.0.1")
+  testImplementation("uk.org.webcompere:system-stubs-jupiter:2.0.2")
   // system-stubs uses older byte buddy which does not work with java 19.
   testImplementation("net.bytebuddy:byte-buddy-agent:1.12.22")
   testImplementation("net.bytebuddy:byte-buddy:1.12.22")

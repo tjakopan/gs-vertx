@@ -6,7 +6,7 @@ plugins {
 dependencies {
   implementation(project(":utilities"))
   implementation("io.vertx:vertx-pg-client")
-  implementation("com.ongres.scram:client:2.1") // Needed for PostgreSQL auth.
+  runtimeOnly("com.ongres.scram:client:2.1") // Needed for PostgreSQL auth.
   implementation("io.vertx:vertx-sql-client-templates")
   implementation("io.vertx:vertx-service-proxy")
 
