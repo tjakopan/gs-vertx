@@ -19,7 +19,7 @@ dependencies {
   implementation("io.vertx:vertx-lang-kotlin")
 
   implementation("ch.qos.logback:logback-classic:1.4.5")
-  implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
+  implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
   testImplementation(kotlin("test-junit5"))
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
