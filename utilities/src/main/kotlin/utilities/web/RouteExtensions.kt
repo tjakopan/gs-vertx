@@ -7,11 +7,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
-fun Route.coroutineHandler(
+fun Route.handler(
   coroutineScope: CoroutineScope,
   requestHandler: suspend CoroutineScope.(RoutingContext) -> Unit
-): Route {
-  return handler { ctx ->
+): Route =
+  handler { ctx ->
     coroutineScope.launch {
       coroutineScope {
         try {
@@ -22,13 +22,9 @@ fun Route.coroutineHandler(
       }
     }
   }
-}
 
-fun <T> Route.coroutineRespond(
-  coroutineScope: CoroutineScope,
-  function: suspend CoroutineScope.(RoutingContext) -> T
-): Route {
-  return respond { ctx ->
+fun <T> Route.respond(coroutineScope: CoroutineScope, function: suspend CoroutineScope.(RoutingContext) -> T): Route =
+  respond { ctx ->
     val promise = Promise.promise<T>()
     coroutineScope.launch {
       coroutineScope {
@@ -42,4 +38,3 @@ fun <T> Route.coroutineRespond(
     }
     promise.future()
   }
-}

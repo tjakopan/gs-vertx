@@ -1,7 +1,7 @@
 import io.vertx.ext.web.Router
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
-import utilities.web.coroutineRespond
+import utilities.web.respond
 
 @Suppress("unused")
 class ActuatorServiceVerticle : CoroutineVerticle() {
@@ -12,7 +12,7 @@ class ActuatorServiceVerticle : CoroutineVerticle() {
 
     val router = Router.router(vertx)
     router.get("/hello-world")
-      .coroutineRespond(this) { ctx -> getGreetingHandler(ctx) }
+      .respond(this) { ctx -> getGreetingHandler(ctx) }
 
     server.requestHandler(router)
       .listen(8080)

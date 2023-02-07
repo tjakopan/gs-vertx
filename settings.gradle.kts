@@ -15,3 +15,7 @@ include("gs-uploading-files")
 include("gs-messaging-redis")
 include("gs-actuator-service")
 include("gs-managing-transactions")
+
+include("vertx-in-action:chapter01")
+include("vertx-in-action:chapter02")
+include("vertx-in-action:chapter03")
