@@ -6,7 +6,7 @@ import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
 import mu.KotlinLogging
-import utilities.core.handler
+import utilities.core.streams.handler
 import utilities.core.http.endHandler
 import utilities.core.http.requestHandler
 
