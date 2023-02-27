@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: "mongo:6-jammy"
+    ports:
+      - "27017:27017"
+    environment:
+      - "MONGO_INITDB_DATABASE=profiles"
+    volumes:
+      - "./init/mongo:/docker-entrypoint-initdb.d"
+
+  postgres:
+    image: "postgres:15-alpine"
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_PASSWORD=vertx-in-action"
+    volumes:
+      - "./init/postgres:/docker-entrypoint-initdb.d"
+
+  kafka:
+    image: "vectorized/redpanda:v22.3.12"
+    command:
+      - redpanda
+      - start
+      - --kafka-addr
+      - internal://0.0.0.0:9092,external://0.0.0.0:19092
+      # use the internal addresses to connect to the Redpanda brokers'
+      # from inside the same Docker network.
+      #
+      # use the external addresses to connect to the Redpanda brokers'
+      # from outside the Docker network.
+      #
+      # address the broker advertises to clients that connect to the Kafka API.
+      - --advertise-kafka-addr
+      - internal://kafka:9092,external://localhost:19092
+      - --pandaproxy-addr
+      - internal://0.0.0.0:8082,external://0.0.0.0:18082
+      # address the broker advertises to clients that connect to PandaProxy.
+      - --advertise-pandaproxy-addr
+      - internal://kafka:8082,external://localhost:18082
+      - --schema-registry-addr
+      - internal://0.0.0.0:8081,external://0.0.0.0:18081
+      # Redpanda brokers use the RPC API to communicate with eachother internally.
+      - --rpc-addr
+      - kafka:33145
+      - --advertise-rpc-addr
+      - kafka:33145
+      # tells Seastar (the framework Redpanda uses under the hood) to use 1 core on the system.
+      - --smp 1
+      # the amount of memory to make available to Redpanda.
+      - --memory 1G
+      # the amount of memory that's left for the Seastar subsystem.
+      # For development purposes this is set to 0.
+      - --reserve-memory 0M
+      # Redpanda won't assume it has all of the provisioned CPU
+      # (to accommodate Docker resource limitations).
+      - --overprovisioned
+      # enable logs for debugging.
+      - --default-log-level=debug
+    volumes:
+      - "redpanda:/var/lib/redpanda/data"
+    ports:
+      - "18081:18081"
+      - "18082:18082"
+      - "19092:19092"
+      - "19644:9644"
+
+  activemq:
+    build:
+      context: ./activemq-artemis/_TMP_/artemis/2.28.0/
+      dockerfile: ./docker/Dockerfile-ubuntu-11-jre
+    image: activemq-artemis
+    ports:
+      - "5672:5672"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  redpanda: null
