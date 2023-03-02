@@ -5,7 +5,7 @@ plugins {
 dependencies {
   implementation(project(":utilities"))
   implementation("io.vertx:vertx-web")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
 
   testImplementation("io.vertx:vertx-web-client")
 }

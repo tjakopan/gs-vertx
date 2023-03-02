@@ -13,7 +13,7 @@ dependencies {
   implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4"))
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
-  implementation(platform("io.vertx:vertx-stack-depchain:4.3.7"))
+  implementation(platform("io.vertx:vertx-stack-depchain:4.3.8"))
   implementation("io.vertx:vertx-core")
   implementation("io.vertx:vertx-lang-kotlin-coroutines")
   implementation("io.vertx:vertx-lang-kotlin")
@@ -24,7 +24,7 @@ dependencies {
   testImplementation(kotlin("test-junit5"))
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("io.vertx:vertx-junit5")
-  testImplementation("io.kotest:kotest-assertions-core:5.5.4")
+  testImplementation("io.kotest:kotest-assertions-core:5.5.5")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_18
