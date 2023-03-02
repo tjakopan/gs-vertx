@@ -17,6 +17,7 @@ import utilities.core.eventbus.consumer
 import utilities.core.http.requestHandler
 import utilities.core.setPeriodic
 import java.io.File
+import kotlin.time.Duration.Companion.milliseconds
 
 private val logger = KotlinLogging.logger { }
 
@@ -37,7 +38,7 @@ class Jukebox : CoroutineVerticle() {
       .listen(8080)
       .await()
 
-    vertx.setPeriodic(this, 100) { streamAudioChunk() }
+    vertx.setPeriodic(this, 100.milliseconds) { streamAudioChunk() }
   }
 
   private enum class State { PLAYING, PAUSED }
