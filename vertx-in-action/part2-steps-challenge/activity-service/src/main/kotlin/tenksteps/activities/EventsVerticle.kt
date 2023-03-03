@@ -44,13 +44,9 @@ class EventsVerticle : CoroutineVerticle() {
   }
 
   private suspend fun handleRecord(record: KafkaConsumerRecord<String, JsonObject>) {
-    logger.info { "Handling record $record" }
     insertRecord(record)
-    logger.info { "Inserted record" }
     generateActivityUpdate(record)
-    logger.info { "Generated activity updata" }
     commitKafkaConsumerOffset()
-    logger.info { "Committed offset" }
   }
 
   private suspend fun insertRecord(record: KafkaConsumerRecord<String, JsonObject>) {
