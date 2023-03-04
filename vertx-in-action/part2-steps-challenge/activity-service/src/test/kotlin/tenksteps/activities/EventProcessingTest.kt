@@ -64,7 +64,7 @@ class EventProcessingTest {
   }
 
   @Test
-  fun `send events from the same device and observer that a correct daily steps count event is being produced`(vertx: Vertx) =
+  fun `send events from the same device and observe that a correct daily steps count event is being produced`(vertx: Vertx) =
     runTest {
       consumer.subscribe("daily.step.updates").await()
       vertx.deployVerticle(EventsVerticle()).await()
